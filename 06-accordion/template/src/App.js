@@ -28,13 +28,14 @@ function App() {
   );
 }
 
-function AccordionItem({ title, text }) {
+function AccordionItem({ num, title, text }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Paper
       elevation={4}
       sx={{
+        borderTop: isOpen ? "4px solid green" : "",
         padding: "20px",
         margin: "30px",
         width: "auto",
@@ -44,6 +45,9 @@ function AccordionItem({ title, text }) {
         alignItems: "center",
       }}
     >
+      <p style={{ color: isOpen ? "green" : "gray" }}>
+        {num < 9 ? `${num + 1}` : num + 1}
+      </p>
       <h1>{title}</h1>
       <Button onClick={() => setIsOpen(!isOpen)} sx={{ alignSelf: "flex-end" }}>
         x
@@ -56,8 +60,13 @@ function AccordionItem({ title, text }) {
 function Accordion({ items }) {
   return (
     <div>
-      {items.map((item) => (
-        <AccordionItem title={item.title} text={item.text} key={item.title} />
+      {items.map((item, index) => (
+        <AccordionItem
+          title={item.title}
+          text={item.text}
+          key={item.title}
+          num={index}
+        />
       ))}
     </div>
   );
