@@ -18,3 +18,20 @@ const initialFriends = [
     balance: 0,
   },
 ];
+
+function App() {}
+
+function FriendsList() {
+  return (
+    <div>
+      <h2>Name</h2>
+      <ul>
+        <Friends />
+      </ul>
+    </div>
+  );
+}
+
+function Friends() {
+  return initialFriends.map((friend) => <friend key={friend.id} {...friend} />);
+}
